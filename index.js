@@ -21,8 +21,7 @@ app.get('/all',(req,res)=>{
 // How to get data from the database
 app.get('/users', async(req,res)=>{
     try {
-        const {userAge} = req.body;
-        const users = await User.find({ age: { $lt: userAge } })
+        const users = await User.find({})
         res.status(200).json(users)
     } catch (error) {
         res.status(500).json({message: error.message});
