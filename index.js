@@ -6,7 +6,8 @@ const app = express();
 
 // middleware
 app.use(express.json());
-app.use(express.urlencoded({extended: false}))
+app.use(cors())
+app.use(express.urlencoded({extended: true}))
 
 // routes
 app.get('/',(req,res)=>{
@@ -80,8 +81,11 @@ app.post('/user',async (req,res)=>{
 })
 
 mongoose.set('strictQuery',false);
-mongoose.
-    connect('mongodb+srv://pjha2186:admin@cluster0.x3ce6um.mongodb.net/love-Connect')
+mongoose
+    .connect('mongodb+srv://pjha2186:admin@cluster0.x3ce6um.mongodb.net/love-Connect' || "", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
     .then(()=>{
         console.log("Connect to mongodb")
         app.listen(3000,()=>{
